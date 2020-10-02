@@ -2,7 +2,11 @@ import React, {Component} from 'react';
 import './App.css';
 
 class App extends Component {
-  data = [];
+  data = [
+    "This is list sample.",
+    "これはリストのサンプルです。",
+    "配列をリストに変換します。"
+  ];
 
   msgStyle = {
     fontSize: "24pt",
@@ -10,54 +14,67 @@ class App extends Component {
     margin: "20px 0px",
     padding: "5px",
   }
-  area = {
-    width: "500px",
-    height: "500px",
-    border: "1px solid blue"
-  }
-  btnStyle = {
-    fontSize: "16pt",
-    padding: "10px"
-  }
 
   constructor(props) {
     super(props);
     this.state = {
       list: this.data
     }
-    this.doAction = this.doAction.bind(this);
-  }
-
-  doAction(e) {
-    let x = e.pageX;
-    let y = e.pageY;
-    this.data.push({x:x, y:y});
-    this.setState({
-      list: this.data
-    });
-  }
-
-  draw(d) {
-    let s = {
-      position: "absolute",
-      left: (d.x - 25) + "px",
-      top: (d.y - 25) + "px",
-      width: "50px",
-      height: "50px",
-      backgroundColor: "#66f3",
-    };
-
-    return <div style={s}></div>;
   }
 
   render() {
     return <div>
       <h1>React</h1>
-      <h2 style={this.msgStyle}>show rect.</h2>
-      <div style={this.area} onClick={this.doAction}>
-        {this.data.map((value) => this.draw(value))}
-      </div>
+      <h2 style={this.msgStyle}>show list.</h2>
+      <List title="サンプル・リスト" data={this.data}></List>
     </div>
+  }
+}
+
+class List extends Component {
+  number = 1;
+
+  title = {
+    fontSize: "20pt",
+    fontWeight: "bold",
+    color: "blue"
+  }
+
+  render() {
+    let data = this.props.data;
+    return (
+      <div>
+        <p style={this.title}>{this.props.title}</p>
+        <ul>
+          {data.map((item) => 
+            <Item number={this.number++} value={item} key={this.number} />
+          )}
+        </ul>
+      </div>
+    )
+  }
+}
+
+class Item extends Component {
+  li = {
+    listStyleType: "square",
+    fontSize: "16pt",
+    color: "#06",
+    margin: "0px",
+    padding: "0px"
+  }
+  num = {
+    fontWeight: "bold",
+    color: "red"
+  }
+
+  render() {
+    return (
+      <li style={this.li}>
+        <span style={this.num}>[{this.props.number}]</span>
+         {this.props.value}
+      </li>
+    )
   }
 }
 
