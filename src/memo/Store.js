@@ -93,7 +93,7 @@ export function deleteMemo(num) {
 }
 
 // メモ検索のアクション
-export function addMemo(text) {
+export function findMemo(text) {
     return {
         type: 'FIND',
         find: text
