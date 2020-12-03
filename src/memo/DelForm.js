@@ -43,7 +43,7 @@ class DelForm extends Component {
     render() {
         let n = 0;
         let items = this.props.data.map((value) => (
-            <Option key={n} value={n++}>{value.message.substring(0, 10)}</Option>
+            <option key={n} value={n++}>{value.message.substring(0, 10)}</option>
         ));
 
         return (
@@ -59,4 +59,4 @@ class DelForm extends Component {
     }
 }
 
-export default connext((state) => state)(DelForm);
+export default connect((state) => state)(DelForm);
