@@ -2,11 +2,6 @@ import React, {Component} from 'react';
 import { connect } from "react-redux";
 import './App.css';
 
-// ステートのマッピング
-function mappingState(state) {
-  return state;
-}
-
 class App extends Component {
 
   constructor(props) {
@@ -61,6 +56,8 @@ class Button extends Component {
   doAction(e) {
     if (e.shiftKey) {
       this.props.dispatch({type: 'DECREMENT'});
+    } else if (e.ctrlkey) {
+      this.props.dispatch({type: 'RESET'});
     } else {
       this.props.dispatch({type: 'INCREMENT'});
     }
