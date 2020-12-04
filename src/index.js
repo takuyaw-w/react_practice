@@ -13,7 +13,9 @@ import * as serviceWorker from './serviceWorker';
 // redux persistの設定
 const persistConfig = {
   key: "memo",
-  storage
+  storage,
+  blacklist: ["message", "mode", "fdata"],
+  whitelist: ["data"]
 }
 
 // パーシストレデューサーの作成
